@@ -4,8 +4,8 @@
 
 type Book {
   id: Int!
-  name: String!
-  author: Author!
+  title: String!
+  authorId: Int!
 }
 
 type Author {
@@ -31,21 +31,23 @@ type Mutation {
 }
 
 input CreateAuthorInput {
-  id: Int!
   name: String!
-}
-
-input UpdateAuthorInput {
-  id: Int
-  name: String!
+  books: [CreateBookInput!]
 }
 
 input CreateBookInput {
-  id: Int!
+  title: String!
+  authorId: Int!
+}
+
+input UpdateAuthorInput {
   name: String!
+  books: [CreateBookInput!]
+  id: Int!
 }
 
 input UpdateBookInput {
-  id: Int
-  name: String!
+  title: String!
+  authorId: Int
+  id: Int!
 }

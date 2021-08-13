@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Author } from 'src/authors/model/author.model';
+import { Author } from 'src/authors/entities/author.entity';
 
 @Entity()
 export class Book {
@@ -11,5 +11,5 @@ export class Book {
 
   @ManyToOne(() => Author, author => author.books)
   // @OneToMany(type => Author, author => author.books)
-  author: Author;
+  authorId: number;
 }

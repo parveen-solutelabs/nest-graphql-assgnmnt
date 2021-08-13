@@ -7,17 +7,17 @@ import { Book } from './model/book.model';
 
 @Injectable()
 export class BooksService {
-  constructor(@InjectRepository(Book) private booksRepository: Repository<Book>) {}
-  
+  constructor(@InjectRepository(Book) private booksRepository: Repository<Book>) { }
+
   async create(createBookInput: CreateBookInput): Promise<Book> {
     const newBook = this.booksRepository.create(createBookInput);
     return this.booksRepository.save(newBook);
   }
 
   async findAll(): Promise<Book[]> {
-    return this.booksRepository.find({
-      // relations: ['author']
-    });
+    return this.booksRepository.find(
+      // { relations: ['authorId'] }
+    );
   }
 
   async findOne(id: number): Promise<Book> {
@@ -30,7 +30,7 @@ export class BooksService {
       ...updateBookInput
     });
 
-    if(!book)
+    if (!book)
       throw new NotFoundException(`Book #${id} not found.`);
 
     return this.booksRepository.save(book);

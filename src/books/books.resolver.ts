@@ -4,7 +4,7 @@ import { Book } from './model/book.model';
 import { CreateBookInput } from './dto/create-book.input';
 import { UpdateBookInput } from './dto/update-book.input';
 
-@Resolver(() => Book)
+@Resolver()
 export class BooksResolver {
   constructor(private readonly booksService: BooksService) {}
 

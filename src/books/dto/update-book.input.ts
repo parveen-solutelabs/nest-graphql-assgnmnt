@@ -1,12 +1,15 @@
 import { CreateBookInput } from './create-book.input';
-import { Field, PartialType, InputType } from '@nestjs/graphql';
+import { Field, Int, PartialType, InputType } from '@nestjs/graphql';
 import { Author } from 'src/authors/model/author.model';
 
 @InputType()
 export class UpdateBookInput extends PartialType(CreateBookInput) {
-  @Field()
-  title: string;
+  @Field(type => Int)
+  id: number
 
-  @Field(type => Author)
-  author: Author;
+  @Field()
+  title?: string;
+
+  @Field(type => Int, { nullable: true })
+  authorId?: number;
 }

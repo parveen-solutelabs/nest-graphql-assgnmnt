@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { Book } from 'src/books/model/book.model';
+import { Book } from 'src/books/entities/book.entity';
 
 @Entity()
 export class Author {
@@ -9,6 +9,6 @@ export class Author {
   @Column()
   name: string;
 
-  @OneToMany(() => Book, book => book.author)
+  @OneToMany(() => Book, book => book.authorId)
   books?: Book[];
 }

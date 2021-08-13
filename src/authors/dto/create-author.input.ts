@@ -1,14 +1,12 @@
 import { Int, Field, InputType } from '@nestjs/graphql';
+import { CreateBookInput } from 'src/books/dto/create-book.input';
 import { Book } from 'src/books/model/book.model';
 
 @InputType()
 export class CreateAuthorInput {
-  @Field(() => Int)
-  id: number;
-
   @Field()
   name: string;
 
-  @Field(type => [Book], {nullable: true})
-  books: Book [];
+  @Field(type => [CreateBookInput], { nullable: true })
+  books?: CreateBookInput[];
 }
