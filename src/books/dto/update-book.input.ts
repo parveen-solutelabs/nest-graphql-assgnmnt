@@ -3,7 +3,9 @@ import { Field, Int, PartialType, InputType } from '@nestjs/graphql';
 import { UpdateAuthorInput } from 'src/authors/dto/update-author.input';
 
 @InputType()
-export class UpdateBookInput extends PartialType(CreateBookInput) {
+export class UpdateBookInput 
+// extends CreateBookInput 
+{
   @Field(type => Int)
   id: number
 

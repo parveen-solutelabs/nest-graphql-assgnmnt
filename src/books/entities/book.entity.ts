@@ -10,6 +10,5 @@ export class Book {
   title: string;
 
   @ManyToOne(() => Author, author => author.books)
-  // @OneToMany(type => Author, author => author.books)
-  authorId: number;
+  author: Author;
 }

@@ -14,26 +14,30 @@ export class AuthorsService {
     return this.authorsRepository.save(newAuthor);
   }
 
-  findAll() {
+  async findAll() {
+    console.log(JSON.stringify(await this.authorsRepository.find({
+      relations: ['books']
+    })), null, 2)
     return this.authorsRepository.find({
       relations: ['books']
     });
   }
 
   findOne(id: number) {
-    return this.authorsRepository.findOne(id);
+    return this.authorsRepository.findOne(id, { relations: ['books']});
   }
 
   async update(id: number, updateAuthorInput: UpdateAuthorInput) {
-    const author = await this.authorsRepository.preload({
-      id: +id,
-      ...updateAuthorInput
+    const author = await this.authorsRepository.findOne(id, {
+      relations: ['books']
     });
+
+    console.log(author);
 
     if(!author)
       throw new NotFoundException(`Author #${id} not found.`);
 
-    return this.authorsRepository.save(author);
+    return this.authorsRepository.save(Object.assign({}, author, updateAuthorInput));
   }
 
   async remove(id: number) {

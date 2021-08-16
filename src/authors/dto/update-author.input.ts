@@ -5,11 +5,13 @@ import { CreateBookInput } from 'src/books/dto/create-book.input';
 import { UpdateBookInput } from 'src/books/dto/update-book.input';
 
 @InputType()
-export class UpdateAuthorInput extends PartialType(CreateAuthorInput) {
+export class UpdateAuthorInput 
+// extends PartialType(CreateAuthorInput)
+ {
   @Field(() => Int)
   id: number;
 
-  @Field()
+  @Field((type) => String, { nullable: true })
   name?: string;
 
   @Field(type => [UpdateBookInput], { nullable: true })

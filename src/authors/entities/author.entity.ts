@@ -9,6 +9,6 @@ export class Author {
   @Column()
   name: string;
 
-  @OneToMany(() => Book, book => book.authorId)
+  @OneToMany(() => Book, book => book.author)
   books?: Book[];
 }
