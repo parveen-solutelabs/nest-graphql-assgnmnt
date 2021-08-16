@@ -9,6 +9,6 @@ export class Book {
   @Field()
   title: string;
 
-  @Field(type => Int)
-  authorId: number;
+  @Field(type => Author)
+  author: Author;
 }

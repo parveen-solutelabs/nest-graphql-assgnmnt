@@ -14,9 +14,14 @@ export class BooksService {
     return this.booksRepository.save(newBook);
   }
 
-  async findAll(): Promise<Book[]> {
+  async findAll()
+  : Promise<Book[]> 
+  {
+    // console.log(await this.booksRepository.find({
+    //   relations: ['authorId']
+    // }))
     return this.booksRepository.find(
-      // { relations: ['authorId'] }
+      { relations: ['author'] }
     );
   }
 

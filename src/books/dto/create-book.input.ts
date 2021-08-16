@@ -1,12 +1,15 @@
 import { Int, Field, InputType } from '@nestjs/graphql';
 import { CreateAuthorInput } from 'src/authors/dto/create-author.input';
-import { Author } from 'src/authors/entities/author.entity';
+import { UpdateAuthorInput } from 'src/authors/dto/update-author.input';
 
 @InputType()
 export class CreateBookInput {
+  // @Field(type => Int)
+  // id: number;
+
   @Field()
   title: string;
 
-  @Field(type => Int)
-  authorId: number;
+  @Field(type => UpdateAuthorInput)
+  author: UpdateAuthorInput;
 }
